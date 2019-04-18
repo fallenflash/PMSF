@@ -5750,19 +5750,7 @@ $(function () {
     }
     // load MOTD, if set
     if (motd) {
-        $.ajax({
-            url: 'motd_data',
-            type: 'POST',
-            dataType: 'json',
-            cache: false,
-            success: function (data) {
-                // set content of motd banner
-                $('#motd').attr('title', data.title).html(data.content).dialog()
-            },
-            fail: function () {
-                return false
-            }
-        })
+        $('#motd').load('static/motd/motd.html');
     }
 })
 
@@ -6222,7 +6210,7 @@ $(function () {
 
     // run interval timers to regularly update map and timediffs
     window.setInterval(updateLabelDiffTime, 1000)
-    window.setInterval(updateMap, queryInterval)
+    window.setInterval(updateMap, 2000)
     window.setInterval(updateWeatherOverlay, 60000)
     window.setInterval(updateGeoLocation, 1000)
 

@@ -59,8 +59,8 @@ if ($noNativeLogin === true && $noDiscordLogin === true ||  (($noNativeLogin ===
         $noSearchPortals = false;                                      // true/false
 // Message of the Day
         $noMotd = true;                                                // true/false
-        $motdTitle = "Message of the Day";
-        $motdContent = "This is an example MOTD<br>Do whatever you like with it.";
+        $motdTitle = "Welcome to the SilphSquad";
+        $motdContent = "You must be a SilphSquad member for map access<br>Please Login above.";
     } else if ($userAccessLevel['access_level'] == $donorLevel) {
 // Editting variables
         $noManualGyms = true;                                          // true/false

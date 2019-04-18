@@ -34,6 +34,10 @@ if (!validateToken($_POST['token'])) {
     die();
 }
 
+    $('.modal').modal('show');
+    $('header').child('a[href="./user"]').hide();
+    $('header').child('a[href="https://donorbox.org/silphscope"]').hide();
+
 
 $id = $_POST['id'];
 

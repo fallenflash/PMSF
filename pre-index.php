@@ -190,11 +190,13 @@ function itemFilterImages($noItemNumbers, $onClick = '', $itemsToExclude = array
     <!-- Leaflet -->
     <link rel="stylesheet" href="node_modules/leaflet/dist/leaflet.css" />
     <link rel="stylesheet" href="static/dist/css/app.min.css">
-    <link rel="stylesheet" href="static/motd/motd.css">
-
-    <link rel="stylesheet" href="node_modules/leaflet.markercluster/dist/MarkerCluster.css" />
+<link rel="stylesheet" href="static/motd/motdstyle.css?form=<?=urlencode(time())?>">
+   <link rel="stylesheet" href="node_modules/leaflet.markercluster/dist/MarkerCluster.css" />
     <link rel="stylesheet" href="node_modules/leaflet.markercluster/dist/MarkerCluster.Default.css" />
     <link href='static/css/leaflet.fullscreen.css' rel='stylesheet' />
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+
+
 </head>
 
 <body id="top">
@@ -1379,11 +1381,16 @@ function itemFilterImages($noItemNumbers, $onClick = '', $itemsToExclude = array
             </center>
         </nav>
 
-        <div id="motd" title="">
-            <?php include('static/motd/motd.html'); ?>
-        </div>
 
         <div id="map"></div>
+
+			<div id="motd" title="" style="cursor:pointer;">
+    <?php 
+        include('static/motd/motd.html');
+    ?>
+</div>
+
+
         <div class="global-raid-modal">
 
         </div>
@@ -1942,6 +1949,7 @@ function itemFilterImages($noItemNumbers, $onClick = '', $itemsToExclude = array
         var noDeleteCommunity = <?php echo $noDeleteCommunity === true ? 'true' : 'false' ?>;
         var noEditCommunity = <?php echo $noEditCommunity === true ? 'true' : 'false' ?>;
         var login = <?php echo $noNativeLogin === false || $noDiscordLogin === false  ? 'true' : 'false' ?>;
+        var sSUser = <?php echo isset($_SESSION['user']) ? json_encode($_SESSION['user']) : 'false' ?>;
         var expireTimestamp = <?php echo isset($_SESSION['user']->expire_timestamp) ? $_SESSION['user']->expire_timestamp : 0 ?>;
         var timestamp = <?php echo time() ?>;
         var noRenamePokestops = <?php echo $noRenamePokestops === true ? 'true' : 'false' ?>;
@@ -1973,11 +1981,13 @@ function itemFilterImages($noItemNumbers, $onClick = '', $itemsToExclude = array
     <script src="static/dist/js/map.common.min.js"></script>
     <script src="static/dist/js/map.min.js"></script>
     <script src="static/dist/js/stats.min.js"></script>
+    <script defer src="https://use.fontawesome.com/releases/v5.8.1/js/all.js" integrity="sha384-g5uSoOSBd7KkhAMlnQILrecXvzst9TdC09/VM+pjDTCM+1il8RHz5fKANTFFb+gQ" crossorigin="anonymous"></script>
     <script>
         $(document).ready(function() {
             initMap()
         })
     </script>
+    <script defer src="static/motd/motd.js?i=<?=urlencode(time())?>"></script>
 </body>
 
 </html> 
