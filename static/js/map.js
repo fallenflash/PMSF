@@ -196,11 +196,12 @@ var searchProvider = new OpenStreetMapProvider()
 //
 if (location.search.indexOf('login=true') > 0) {
     $('#nav').load(window.location.href + '#nav')
-    window.location.href = '/maps/'
+    window.location.href = '/'
 }
 if (location.search.indexOf('login=false') > 0) {
     openAccessDeniedModal()
 }
+
 function openAccessDeniedModal(event) { // eslint-disable-line no-unused-vars
     $('.ui-dialog').remove()
     $('.accessdenied-modal').clone().dialog({
@@ -213,6 +214,7 @@ function openAccessDeniedModal(event) { // eslint-disable-line no-unused-vars
         }
     })
 }
+
 function formatDate(date) {
     var monthNames = [
         'January', 'February', 'March',
@@ -529,23 +531,41 @@ function initMap() { // eslint-disable-line no-unused-vars
 function toggleFullscreenMap() { // eslint-disable-line no-unused-vars
     map.toggleFullscreen()
 }
-var openstreetmap = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'}) // eslint-disable-line no-unused-vars
+var openstreetmap = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+}) // eslint-disable-line no-unused-vars
 
-var darkmatter = L.tileLayer('https://cartodb-basemaps-{s}.global.ssl.fastly.net/dark_all/{z}/{x}/{y}.png', {attribution: '&copy; <a href="https://carto.com/">Carto</a>'}) // eslint-disable-line no-unused-vars
+var darkmatter = L.tileLayer('https://cartodb-basemaps-{s}.global.ssl.fastly.net/dark_all/{z}/{x}/{y}.png', {
+    attribution: '&copy; <a href="https://carto.com/">Carto</a>'
+}) // eslint-disable-line no-unused-vars
 
-var styleblackandwhite = L.tileLayer('https://korona.geog.uni-heidelberg.de/tiles/roadsg/x={x}&y={y}&z={z}', {attribution: 'Imagery from <a href="http://giscience.uni-hd.de/">GIScience Research Group @ University of Heidelberg</a> &mdash; Map data &copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'}) // eslint-disable-line no-unused-vars
+var styleblackandwhite = L.tileLayer('https://korona.geog.uni-heidelberg.de/tiles/roadsg/x={x}&y={y}&z={z}', {
+    attribution: 'Imagery from <a href="http://giscience.uni-hd.de/">GIScience Research Group @ University of Heidelberg</a> &mdash; Map data &copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+}) // eslint-disable-line no-unused-vars
 
-var styletopo = L.tileLayer('https://{s}.tile.opentopomap.org/{z}/{x}/{y}.png', {attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'}) // eslint-disable-line no-unused-vars
+var styletopo = L.tileLayer('https://{s}.tile.opentopomap.org/{z}/{x}/{y}.png', {
+    attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+}) // eslint-disable-line no-unused-vars
 
-var stylesatellite = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {attribution: 'Tiles &copy; Esri &mdash; Source: Esri, i-cubed, USDA, USGS, AEX, GeoEye, Getmapping, Aerogrid, IGN, IGP, UPR-EGP, and the GIS User Community'}) // eslint-disable-line no-unused-vars
+var stylesatellite = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
+    attribution: 'Tiles &copy; Esri &mdash; Source: Esri, i-cubed, USDA, USGS, AEX, GeoEye, Getmapping, Aerogrid, IGN, IGP, UPR-EGP, and the GIS User Community'
+}) // eslint-disable-line no-unused-vars
 
-var stylewikipedia = L.tileLayer('https://maps.wikimedia.org/osm-intl/{z}/{x}/{y}{r}.png', {attribution: '<a href="https://wikimediafoundation.org/wiki/Maps_Terms_of_Use">Wikimedia</a>'}) // eslint-disable-line no-unused-vars
+var stylewikipedia = L.tileLayer('https://maps.wikimedia.org/osm-intl/{z}/{x}/{y}{r}.png', {
+    attribution: '<a href="https://wikimediafoundation.org/wiki/Maps_Terms_of_Use">Wikimedia</a>'
+}) // eslint-disable-line no-unused-vars
 
-var googlemapssat = L.gridLayer.googleMutant({type: 'satellite'}) // eslint-disable-line no-unused-vars
-var googlemapsroad = L.gridLayer.googleMutant({type: 'roadmap'}) // eslint-disable-line no-unused-vars
+var googlemapssat = L.gridLayer.googleMutant({
+    type: 'satellite'
+}) // eslint-disable-line no-unused-vars
+var googlemapsroad = L.gridLayer.googleMutant({
+    type: 'roadmap'
+}) // eslint-disable-line no-unused-vars
 
 function setTileLayer(layername) {
-    if (map.hasLayer(window[_oldlayer])) { map.removeLayer(window[_oldlayer]) }
+    if (map.hasLayer(window[_oldlayer])) {
+        map.removeLayer(window[_oldlayer])
+    }
     map.addLayer(window[layername])
     _oldlayer = layername
 }
@@ -596,7 +616,14 @@ function showS2Cells(level, style) {
     function addPoly(cell) {
         const vertices = cell.getCornerLatLngs()
         const poly = L.polygon(vertices,
-            Object.assign({color: 'blue', opacity: 0.5, weight: 2, fillOpacity: 0.0, dashArray: '2 6', dashOffset: '0'}, style))
+            Object.assign({
+                color: 'blue',
+                opacity: 0.5,
+                weight: 2,
+                fillOpacity: 0.0,
+                dashArray: '2 6',
+                dashOffset: '0'
+            }, style))
         if (cell.level === 13) {
             exLayerGroup.addLayer(poly)
         } else if (cell.level === 14) {
@@ -630,7 +657,10 @@ function buildScanPolygons() {
     $.getJSON(geoJSONfile, function (data) {
         var geoPolys = L.geoJson(data, {
             onEachFeature: function (features, featureLayer) {
-                featureLayer.setStyle({color: features.properties.stroke, fillColor: features.properties.fill})
+                featureLayer.setStyle({
+                    color: features.properties.stroke,
+                    fillColor: features.properties.fill
+                })
                 featureLayer.bindPopup(features.properties.name)
             }
         })
@@ -720,7 +750,9 @@ function initSidebar() {
         searchform.addEventListener('input', async (event) => {
             $('#search-places-results li').remove()
             event.preventDefault()
-            const results = await searchProvider.search({ query: input.value })
+            const results = await searchProvider.search({
+                query: input.value
+            })
             $.each(results, function (key, val) {
                 $('#search-places-results').append('<li class="place-result" data-lat="' + val.y + '" data-lon="' + val.x + '"><span class="place-result" onclick="centerMapOnCoords(event);">' + val.label + '</span></li>')
             })
@@ -1219,10 +1251,10 @@ function getQuest(item) {
         var questinfo = JSON.parse(item['quest_condition_info'])
         var questStr = i8ln(questtypeList[item['quest_type']])
         str = '<div><b>' +
-        i8ln('Quest:') + ' ' +
-        questStr.replace('{0}', item['quest_target']) +
-        '</b></div>' +
-        '<div>'
+            i8ln('Quest:') + ' ' +
+            questStr.replace('{0}', item['quest_target']) +
+            '</b></div>' +
+            '<div>'
 
         if (item['quest_condition_type'] === 1) {
             var tstr = ''
@@ -1285,31 +1317,31 @@ function getQuest(item) {
         }
         if (item['quest_reward_type'] === 7) {
             str += '<div><b>' +
-            i8ln('Reward') + ': ' +
-            item['quest_pokemon_name'] +
-            '</b></div>'
+                i8ln('Reward') + ': ' +
+                item['quest_pokemon_name'] +
+                '</b></div>'
         }
         if (item['quest_reward_type'] === 3) {
             str += '<div><b>' +
-            i8ln('Reward') + ': ' +
-            item['quest_dust_amount'] + ' ' +
-            i8ln('Stardust') +
-            '</b></div>'
+                i8ln('Reward') + ': ' +
+                item['quest_dust_amount'] + ' ' +
+                i8ln('Stardust') +
+                '</b></div>'
         }
         if (item['quest_reward_type'] === 2) {
             str += '<div><b>' +
-            i8ln('Reward') + ': ' +
-            item['quest_reward_amount'] + ' ' +
-            item['quest_item_name'] +
-            '</b></div>'
+                i8ln('Reward') + ': ' +
+                item['quest_reward_amount'] + ' ' +
+                item['quest_item_name'] +
+                '</b></div>'
         }
         str += '</div></center>'
     } else if (item['quest_type'] !== null) {
         questStr = i8ln(questtypeList[item['quest_type']])
         str += '<div><b>' +
-        i8ln('Quest:') + ' ' +
-        questStr.replace('{0}', item['quest_target']) +
-        '</b></div>'
+            i8ln('Quest:') + ' ' +
+            questStr.replace('{0}', item['quest_target']) +
+            '</b></div>'
     }
     return str
 }
@@ -1324,16 +1356,16 @@ function pokestopLabel(item) {
     var stopName = ''
     if (!noQuests && item['quest_type'] !== 0 && lastMidnight < Number(item['quest_timestamp'])) {
         stopName = '<b class="pokestop-quest-name">' +
-        item['pokestop_name'] +
-        '</b>'
+            item['pokestop_name'] +
+            '</b>'
     } else if (item['lure_expiration'] > Date.now()) {
         stopName = '<b class="pokestop-lure-name">' +
-        item['pokestop_name'] +
-        '</b>'
+            item['pokestop_name'] +
+            '</b>'
     } else {
         stopName = '<b class="pokestop-name">' +
-        item['pokestop_name'] +
-        '</b>'
+            item['pokestop_name'] +
+            '</b>'
     }
     var stopImage = ''
     var lureEndStr = ''
@@ -1356,14 +1388,14 @@ function pokestopLabel(item) {
                 '<img style="padding:5px;position:absolute;left:0px;top:15px;height:50px;" src="static/forts/LureModule.png"/>'
         }
         str += stopImage +
-        getReward(item)
+            getReward(item)
         if (item['lure_expiration'] > Date.now()) {
             lureEndStr = getTimeStr(Math.floor(item['lure_expiration'] / 1000))
             str +=
-            '<div style="font-weight:900;">' +
-            i8ln('Lure expiration') + ': ' + lureEndStr +
-            ' <span class="label-countdown" disappears-at="' + item['lure_expiration'] + '">(00m00s)</span>' +
-            '</div>'
+                '<div style="font-weight:900;">' +
+                i8ln('Lure expiration') + ': ' + lureEndStr +
+                ' <span class="label-countdown" disappears-at="' + item['lure_expiration'] + '">(00m00s)</span>' +
+                '</div>'
         }
         str +=
             getQuest(item) +
@@ -1610,7 +1642,11 @@ function customizePokemonMarker(marker, item, skipNotification) {
         marker.rangeCircle = addRangeCircle(marker, map, 'pokemon')
     }
 
-    marker.bindPopup(pokemonLabel(item), {autoPan: false, closeOnClick: false, autoClose: false})
+    marker.bindPopup(pokemonLabel(item), {
+        autoPan: false,
+        closeOnClick: false,
+        autoClose: false
+    })
 
     if (notifiedPokemon.indexOf(item['pokemon_id']) > -1 || notifiedRarity.indexOf(item['pokemon_rarity']) > -1) {
         if (!skipNotification) {
@@ -1768,7 +1804,10 @@ function getGymMarkerIcon(item) {
 }
 
 function setupGymMarker(item) {
-    var marker = L.marker([item['latitude'], item['longitude']], {icon: getGymMarkerIcon(item), zIndexOffset: 1060})
+    var marker = L.marker([item['latitude'], item['longitude']], {
+        icon: getGymMarkerIcon(item),
+        zIndexOffset: 1060
+    })
     markers.addLayer(marker)
     updateGymMarker(item, marker)
 
@@ -1845,7 +1884,11 @@ function setupGymMarker(item) {
 
 
         if (!isMobileDevice() && !isTouchDevice()) {
-            marker.bindPopup(gymLabel(item), {autoPan: false, closeOnClick: false, autoClose: false})
+            marker.bindPopup(gymLabel(item), {
+                autoPan: false,
+                closeOnClick: false,
+                autoClose: false
+            })
             marker.on('mouseover', function () {
                 marker.openPopup()
                 clearSelection()
@@ -1859,7 +1902,11 @@ function setupGymMarker(item) {
             }
         })
     } else {
-        marker.bindPopup(gymLabel(item), {autoPan: false, closeOnClick: false, autoClose: false})
+        marker.bindPopup(gymLabel(item), {
+            autoPan: false,
+            closeOnClick: false,
+            autoClose: false
+        })
         addListeners(marker)
     }
     return marker
@@ -1932,6 +1979,7 @@ function updateGymIcons() {
         mapData.gyms[key]['marker'].setIcon(getGymMarkerIcon(mapData.gyms[key]))
     })
 }
+
 function getPokestopMarkerIcon(item) {
     var stopMarker = ''
     var stopIcon = 'Pstop.png'
@@ -2005,8 +2053,8 @@ function getPokestopMarkerIcon(item) {
                 popupAnchor: [0, -35],
                 className: 'stop-marker',
                 html: '<div>' +
-                '<img src="static/forts/' + stopIcon + '"' +
-                '</div>'
+                    '<img src="static/forts/' + stopIcon + '"' +
+                    '</div>'
             })
         }
     } else {
@@ -2016,8 +2064,8 @@ function getPokestopMarkerIcon(item) {
             popupAnchor: [0, -35],
             className: 'stop-marker',
             html: '<div>' +
-            '<img src="static/forts/' + stopIcon + '"' +
-            '</div>'
+                '<img src="static/forts/' + stopIcon + '"' +
+                '</div>'
         })
     }
     return stopMarker
@@ -2027,9 +2075,25 @@ function setupPokestopMarker(item) {
     var pokestopMarkerIcon = getPokestopMarkerIcon(item)
     var marker
     if (item['quest_pokemon_shiny'] === 'true') {
-        marker = L.marker([item['latitude'], item['longitude']], {icon: pokestopMarkerIcon, zIndexOffset: 1050}).bindPopup(pokestopLabel(item), {className: 'leaflet-popup-content-wrapper shiny', autoPan: false, closeOnClick: false, autoClose: false})
+        marker = L.marker([item['latitude'], item['longitude']], {
+            icon: pokestopMarkerIcon,
+            zIndexOffset: 1050
+        }).bindPopup(pokestopLabel(item), {
+            className: 'leaflet-popup-content-wrapper shiny',
+            autoPan: false,
+            closeOnClick: false,
+            autoClose: false
+        })
     } else {
-        marker = L.marker([item['latitude'], item['longitude']], {icon: pokestopMarkerIcon, zIndexOffset: 1050}).bindPopup(pokestopLabel(item), {className: 'leaflet-popup-content-wrapper normal', autoPan: false, closeOnClick: false, autoClose: false})
+        marker = L.marker([item['latitude'], item['longitude']], {
+            icon: pokestopMarkerIcon,
+            zIndexOffset: 1050
+        }).bindPopup(pokestopLabel(item), {
+            className: 'leaflet-popup-content-wrapper normal',
+            autoPan: false,
+            closeOnClick: false,
+            autoClose: false
+        })
     }
     markers.addLayer(marker)
 
@@ -2041,6 +2105,7 @@ function setupPokestopMarker(item) {
 
     return marker
 }
+
 function setupNestMarker(item) {
     var getNestMarkerIcon = ''
     if (item.pokemon_id > 0) {
@@ -2068,7 +2133,14 @@ function setupNestMarker(item) {
         className: 'marker-nests',
         html: getNestMarkerIcon
     })
-    var marker = L.marker([item['lat'], item['lon']], {icon: nestMarkerIcon, zIndexOffset: 1020}).bindPopup(nestLabel(item), {autoPan: false, closeOnClick: false, autoClose: false})
+    var marker = L.marker([item['lat'], item['lon']], {
+        icon: nestMarkerIcon,
+        zIndexOffset: 1020
+    }).bindPopup(nestLabel(item), {
+        autoPan: false,
+        closeOnClick: false,
+        autoClose: false
+    })
     markers.addLayer(marker)
     addListeners(marker)
 
@@ -2148,7 +2220,14 @@ function setupCommunityMarker(item) {
         html: '<img src="static/images/marker-' + item.type + '.png" style="width:36px;height: auto;"/>'
     })
 
-    var marker = L.marker([item['lat'], item['lon']], {icon: icon, zIndexOffset: 1030}).bindPopup(communityLabel(item), {autoPan: false, closeOnClick: false, autoClose: false})
+    var marker = L.marker([item['lat'], item['lon']], {
+        icon: icon,
+        zIndexOffset: 1030
+    }).bindPopup(communityLabel(item), {
+        autoPan: false,
+        closeOnClick: false,
+        autoClose: false
+    })
     markers.addLayer(marker)
 
     addListeners(marker)
@@ -2161,10 +2240,10 @@ function communityLabel(item) {
         '<img src="static/images/marker-' + item.type + '.png" align"middle" style="width:30px;height: auto;"/>'
     if (item.image_url != null) {
         str +=
-        '<img src="' + item.image_url + '" align"middle" style="width:36px;height: auto;"/>'
+            '<img src="' + item.image_url + '" align"middle" style="width:36px;height: auto;"/>'
     } else {
         str +=
-        '<img src="static/images/community_ball.png" align"middle" style="width:36px;height: auto;"/>'
+            '<img src="static/images/community_ball.png" align"middle" style="width:36px;height: auto;"/>'
     }
     str +=
         '</div>' +
@@ -2174,35 +2253,35 @@ function communityLabel(item) {
         str += '<center><div>Welcome to Teams:<br>'
         if (item.team_instinct === 1) {
             str +=
-            '<img src="static/images/communities/instinct.png" align"middle" style="width:18px;height: auto;"/>'
+                '<img src="static/images/communities/instinct.png" align"middle" style="width:18px;height: auto;"/>'
         }
         if (item.team_mystic === 1) {
             str +=
-            '<img src="static/images/communities/mystic.png" align"middle" style="width:18px;height: auto;"/>'
+                '<img src="static/images/communities/mystic.png" align"middle" style="width:18px;height: auto;"/>'
         }
         if (item.team_valor === 1) {
             str +=
-            '<img src="static/images/communities/valor.png" align"middle" style="width:18px;height: auto;"/>'
+                '<img src="static/images/communities/valor.png" align"middle" style="width:18px;height: auto;"/>'
         }
         str += '</center></div>'
     }
     if (item.size >= 10) {
         str +=
-        '<center><div>' + item.size + ' Members</div></center>'
+            '<center><div>' + item.size + ' Members</div></center>'
     }
     if (item.has_invite_url === 1 && (item.invite_url !== '#' || item.invite_url !== undefined)) {
         str +=
-        '<center><div class="button-container">' +
+            '<center><div class="button-container">' +
             '<a class="button" href="' + item.invite_url + '">' + i8ln('Join Now') + '<i class="fa fa-comments" style="margin-left:10px;"></i>' +
             '</a>' +
-        '</div></center>'
+            '</div></center>'
     }
     if (!noEditCommunity) {
         str +=
-        '<center><div class="button-container">' +
-        '<a class="button" onclick="openEditCommunityModal(event);" data-id="' + item.community_id + '" data-title="' + item.title + '" data-description="' + item.description + '" data-invite="' + item.invite_url + '">' + i8ln('Edit Community') + '<i class="fa fa-edit style="margin-left:10px;"></i></center>' +
+            '<center><div class="button-container">' +
+            '<a class="button" onclick="openEditCommunityModal(event);" data-id="' + item.community_id + '" data-title="' + item.title + '" data-description="' + item.description + '" data-invite="' + item.invite_url + '">' + i8ln('Edit Community') + '<i class="fa fa-edit style="margin-left:10px;"></i></center>' +
             '</a>' +
-        '</div></center>'
+            '</div></center>'
     }
     if (item.source === 2) {
         str += '<center><div style="margin-bottom:5px; margin-top:5px;">' + i8ln('Join on  <a href="https://thesilphroad.com/map#18/' + item.lat + '/' + item.lon + '">thesilphroad.com</a>') + '</div></center>'
@@ -2244,7 +2323,11 @@ function setupPortalMarker(item) {
             pane: 'portals'
         }
     }
-    var marker = L.circleMarker([item['lat'], item['lon']], circle).bindPopup(portalLabel(item), {autoPan: false, closeOnClick: false, autoClose: false})
+    var marker = L.circleMarker([item['lat'], item['lon']], circle).bindPopup(portalLabel(item), {
+        autoPan: false,
+        closeOnClick: false,
+        autoClose: false
+    })
     markers.addLayer(marker)
 
     addListeners(marker)
@@ -2299,7 +2382,11 @@ function setupPoiMarker(item) {
             pane: 'portals'
         }
     }
-    var marker = L.circleMarker([item['lat'], item['lon']], circle).bindPopup(poiLabel(item), {autoPan: false, closeOnClick: false, autoClose: false})
+    var marker = L.circleMarker([item['lat'], item['lon']], circle).bindPopup(poiLabel(item), {
+        autoPan: false,
+        closeOnClick: false,
+        autoClose: false
+    })
     markers.addLayer(marker)
 
     addListeners(marker)
@@ -2480,6 +2567,7 @@ var colourConversion = (function () {
         let rgbArray = hsvToRgb(hue, sat, val)
         return rgbArrayToHexString(rgbArray)
     }
+
     function rgbArrayToHexString(rgbArray) {
         let hexString = '#'
         for (var i = 0; i < rgbArray.length; i++) {
@@ -2494,6 +2582,7 @@ var colourConversion = (function () {
         }
         return hexString
     }
+
     function hsvToRgb(hue, sat, val) {
         let hder = Math.floor(hue / 60)
         let f = hue / 60 - hder
@@ -2538,7 +2627,11 @@ function setupSpawnpointMarker(item) {
         fillColor: hue,
         fillOpacity: 0.4
     }
-    var circle = L.circle([item['latitude'], item['longitude']], rangeCircleOpts).bindPopup(spawnpointLabel(item), {autoPan: false, closeOnclick: false, autoClose: false})
+    var circle = L.circle([item['latitude'], item['longitude']], rangeCircleOpts).bindPopup(spawnpointLabel(item), {
+        autoPan: false,
+        closeOnclick: false,
+        autoClose: false
+    })
     markersnotify.addLayer(circle)
     addListeners(circle)
 
@@ -2797,6 +2890,7 @@ function loadWeatherCellData(cell) { // eslint-disable-line no-unused-vars
         }
     })
 }
+
 function searchForItem(lat, lon, term, type, field) {
     if (term !== '') {
         $.ajax({
@@ -2882,8 +2976,8 @@ function searchForItem(lat, lon, term, type, field) {
                         html += '<span style="background:url(' + element.url + ') no-repeat;" class="i-icon" ></span>'
                     }
                     html += '<div class="cont">' +
-                    '<span class="name" style="font-weight:bold">' + element.name + '</span>' + '<span class="distance" style="font-weight:bold">&nbsp;-&#32;' + element.distance + defaultUnit + '</span>' +
-                    '</div></div>'
+                        '<span class="name" style="font-weight:bold">' + element.name + '</span>' + '<span class="distance" style="font-weight:bold">&nbsp;-&#32;' + element.distance + defaultUnit + '</span>' +
+                        '</div></div>'
                     if (sr.hasClass('gym-results') && manualRaids && !scanArea) {
                         html += '<div class="right-column"><i class="fa fa-binoculars submit-raid"  onClick="openRaidModal(event);" data-id="' + element.external_id + '"></i></div>'
                     }
@@ -2905,8 +2999,8 @@ function searchForItem(lat, lon, term, type, field) {
                         html += '<span style="background:url(' + element.url + ') no-repeat;" class="i-icon" ></span>'
                     }
                     html += '<div class="cont">' +
-                    '<span class="name" style="font-weight:bold">' + element.name + '</span>' + '<span class="distance" style="font-weight:bold">&nbsp;-&#32;' + element.distance + defaultUnit + '</span>' +
-                    '</div></div>'
+                        '<span class="name" style="font-weight:bold">' + element.name + '</span>' + '<span class="distance" style="font-weight:bold">&nbsp;-&#32;' + element.distance + defaultUnit + '</span>' +
+                        '</div></div>'
                     if (sr.hasClass('pokestop-results') && !noManualQuests && !scanArea) {
                         html += '<div class="right-column"><i class="fa fa-binoculars submit-quests"  onClick="openQuestModal(event);" data-id="' + element.external_id + '"></i></div>'
                     }
@@ -2919,9 +3013,9 @@ function searchForItem(lat, lon, term, type, field) {
                         html += '<span style="background:url(' + element.url + ') no-repeat;" class="i-icon" ></span>'
                     }
                     html += '<div class="cont">' +
-                    '<span class="name" style="font-weight:bold">' + element.name + '</span>' + '<span class="distance" style="font-weight:bold">&nbsp;-&#32;' + element.distance + defaultUnit + '</span>' +
-                    '</div></div>' +
-                    '</li>'
+                        '<span class="name" style="font-weight:bold">' + element.name + '</span>' + '<span class="distance" style="font-weight:bold">&nbsp;-&#32;' + element.distance + defaultUnit + '</span>' +
+                        '</div></div>' +
+                        '</li>'
                     sr.append(html)
                 })
                 $.each(data.nests, function (i, element) {
@@ -2938,9 +3032,9 @@ function searchForItem(lat, lon, term, type, field) {
                         html += '<span style="background:url(' + iconpath + 'pokemon_icon_' + pokemonIdStr + '_00.png) no-repeat;" class="i-icon" ></span>'
                     }
                     html += '<div class="cont">' +
-                    '<span class="name" style="font-weight:bold">' + element.name + '</span>' + '<span class="distance" style="font-weight:bold">&nbsp;-&#32;' + element.distance + defaultUnit + '</span>' +
-                    '</div></div>' +
-                    '</li>'
+                        '<span class="name" style="font-weight:bold">' + element.name + '</span>' + '<span class="distance" style="font-weight:bold">&nbsp;-&#32;' + element.distance + defaultUnit + '</span>' +
+                        '</div></div>' +
+                        '</li>'
                     sr.append(html)
                 })
             }
@@ -3087,6 +3181,7 @@ function manualGymData(event) { // eslint-disable-line no-unused-vars
         }
     }
 }
+
 function manualPokemonData(event) { // eslint-disable-line no-unused-vars
     var form = $(event.target).parent().parent().parent()
     var pokemonId = form.find('.pokemonID').val()
@@ -3133,6 +3228,7 @@ function manualPokemonData(event) { // eslint-disable-line no-unused-vars
         }
     }
 }
+
 function deleteGym(event) { // eslint-disable-line no-unused-vars
     var button = $(event.target)
     var gymId = button.data('id')
@@ -3162,6 +3258,7 @@ function deleteGym(event) { // eslint-disable-line no-unused-vars
         }
     }
 }
+
 function toggleExGym(event) { // eslint-disable-line no-unused-vars
     var button = $(event.target)
     var gymId = button.data('id')
@@ -3191,6 +3288,7 @@ function toggleExGym(event) { // eslint-disable-line no-unused-vars
         }
     }
 }
+
 function deletePokestop(event) { // eslint-disable-line no-unused-vars
     var button = $(event.target)
     var pokestopId = button.data('id')
@@ -3219,6 +3317,7 @@ function deletePokestop(event) { // eslint-disable-line no-unused-vars
         }
     }
 }
+
 function renamePokestopData(event) { // eslint-disable-line no-unused-vars
     var form = $(event.target).parent().parent()
     var pokestopId = form.find('.renamepokestopid').val()
@@ -3252,6 +3351,7 @@ function renamePokestopData(event) { // eslint-disable-line no-unused-vars
         }
     }
 }
+
 function convertPokestopData(event) { // eslint-disable-line no-unused-vars
     var form = $(event.target).parent().parent()
     var pokestopId = form.find('.convertpokestopid').val()
@@ -3284,6 +3384,7 @@ function convertPokestopData(event) { // eslint-disable-line no-unused-vars
         }
     }
 }
+
 function convertPortalToPokestopData(event) { // eslint-disable-line no-unused-vars
     var form = $(event.target).parent().parent()
     var portalId = form.find('.convertportalid').val()
@@ -3316,6 +3417,7 @@ function convertPortalToPokestopData(event) { // eslint-disable-line no-unused-v
         }
     }
 }
+
 function convertPortalToGymData(event) { // eslint-disable-line no-unused-vars
     var form = $(event.target).parent().parent()
     var portalId = form.find('.convertportalid').val()
@@ -3348,6 +3450,7 @@ function convertPortalToGymData(event) { // eslint-disable-line no-unused-vars
         }
     }
 }
+
 function markPortalChecked(event) { // eslint-disable-line no-unused-vars
     var form = $(event.target).parent().parent()
     var portalId = form.find('.convertportalid').val()
@@ -3377,6 +3480,7 @@ function markPortalChecked(event) { // eslint-disable-line no-unused-vars
         }
     }
 }
+
 function deleteNest(event) { // eslint-disable-line no-unused-vars
     var button = $(event.target)
     var nestid = button.data('id')
@@ -3572,6 +3676,7 @@ function manualRaidData(event) { // eslint-disable-line no-unused-vars
         }
     }
 }
+
 function submitNewCommunity(event) { // eslint-disable-line no-unused-vars
     var form = $(event.target).parent().parent()
     var lat = $('.submit-modal.ui-dialog-content .submitLatitude').val()
@@ -3609,6 +3714,7 @@ function submitNewCommunity(event) { // eslint-disable-line no-unused-vars
         }
     }
 }
+
 function deleteCommunity(event) { // eslint-disable-line no-unused-vars
     var button = $(event.target)
     var communityid = button.data('id')
@@ -3637,6 +3743,7 @@ function deleteCommunity(event) { // eslint-disable-line no-unused-vars
         }
     }
 }
+
 function editCommunityData(event) { // eslint-disable-line no-unused-vars
     var form = $(event.target).parent().parent()
     var communityId = form.find('.editcommunityid').val()
@@ -3674,6 +3781,7 @@ function editCommunityData(event) { // eslint-disable-line no-unused-vars
         }
     }
 }
+
 function submitPoi(event) { // eslint-disable-line no-unused-vars
     var form = $(event.target).parent().parent()
     var lat = $('.submit-modal.ui-dialog-content .submitLatitude').val()
@@ -3853,6 +3961,7 @@ function openNestModal(event) { // eslint-disable-line no-unused-vars
         }
     })
 }
+
 function openRaidModal(event) { // eslint-disable-line no-unused-vars
     $('.ui-dialog').remove()
     var val = $(event.target).data('id')
@@ -4270,6 +4379,7 @@ function generateTimerLists() {
         '</select>'
     return html
 }
+
 function openSearchModal(event) { // eslint-disable-line no-unused-vars
     $('.ui-dialog').remove()
     var modal = $('.search-modal')
@@ -4328,6 +4438,7 @@ function processPokemons(i, item) {
         }
     }
 }
+
 function processNests(i, item) {
     if (!Store.get('showNests')) {
         return false
@@ -4351,6 +4462,7 @@ function processNests(i, item) {
         mapData.nests[item['nest_id']] = item
     }
 }
+
 function processCommunities(i, item) {
     if (!Store.get('showCommunities')) {
         return false
@@ -4374,6 +4486,7 @@ function processCommunities(i, item) {
         mapData.communities[item['community_id']] = item
     }
 }
+
 function processPortals(i, item) {
     if (!Store.get('showPortals')) {
         return false
@@ -4400,6 +4513,7 @@ function processPortals(i, item) {
         }
     }
 }
+
 function updatePortals() {
     if (!Store.get('showPortals')) {
         return false
@@ -4423,6 +4537,7 @@ function updatePortals() {
         })
     }
 }
+
 function processPois(i, item) {
     if (!Store.get('showPoi')) {
         return false
@@ -4444,6 +4559,7 @@ function processPois(i, item) {
         mapData.pois[item['poi_id']] = item
     }
 }
+
 function processPokestops(i, item) {
     if (!Store.get('showPokestops')) {
         return false
@@ -4736,7 +4852,10 @@ function updateSpawnPoints() {
     $.each(mapData.spawnpoints, function (key, value) {
         if (map.getBounds().contains(value.marker.getLatLng())) {
             var hue = getColorBySpawnTime(value['time'])
-            value.marker.setStyle({color: hue, fillColor: hue})
+            value.marker.setStyle({
+                color: hue,
+                fillColor: hue
+            })
         }
     })
 }
@@ -4855,21 +4974,31 @@ function updateS2Overlay() {
     if ((Store.get('showCells'))) {
         if (Store.get('showExCells') && (map.getZoom() > 12)) {
             exLayerGroup.clearLayers()
-            showS2Cells(13, {color: 'red', weight: 6, dashOffset: '8'})
+            showS2Cells(13, {
+                color: 'red',
+                weight: 6,
+                dashOffset: '8'
+            })
         } else if (Store.get('showExCells') && (map.getZoom() <= 12)) {
             exLayerGroup.clearLayers()
             toastr['error'](i8ln('This is to much zoom.'), i8ln('EX cells are currently hidden'))
         }
         if (Store.get('showGymCells') && (map.getZoom() > 13)) {
             gymLayerGroup.clearLayers()
-            showS2Cells(14, {color: 'green', weight: 4, dashOffset: '4'})
+            showS2Cells(14, {
+                color: 'green',
+                weight: 4,
+                dashOffset: '4'
+            })
         } else if (Store.get('showGymCells') && (map.getZoom() <= 13)) {
             gymLayerGroup.clearLayers()
             toastr['error'](i8ln('This is to much zoom.'), i8ln('Gym cells are currently hidden'))
         }
         if (Store.get('showStopCells') && (map.getZoom() > 16)) {
             stopLayerGroup.clearLayers()
-            showS2Cells(17, {color: 'blue'})
+            showS2Cells(17, {
+                color: 'blue'
+            })
         } else if (Store.get('showStopCells') && (map.getZoom() <= 16)) {
             stopLayerGroup.clearLayers()
             toastr['error'](i8ln('This is to much zoom.'), i8ln('Pokestop cells are currently hidden'))
@@ -4899,7 +5028,9 @@ function drawWeatherOverlay(weather) {
                 iconAnchor: [15, 15],
                 iconUrl: 'static/weather/i-' + item.condition + '.png'
             })
-            var marker = L.marker([center.lat, center.lng], {icon})
+            var marker = L.marker([center.lat, center.lng], {
+                icon
+            })
             weatherPolys.push(poly)
             weatherMarkers.push(marker)
             weatherLayerGroup.addLayer(poly)
@@ -5065,7 +5196,9 @@ $(function () {
 })
 
 function createMyLocationButton() {
-    var _locationMarker = L.control({position: 'bottomright'})
+    var _locationMarker = L.control({
+        position: 'bottomright'
+    })
     var locationContainer
 
     _locationMarker.onAdd = function (map) {
@@ -5218,6 +5351,7 @@ function updateGeoLocation() {
         })
     }
 }
+
 function createUpdateWorker() {
     try {
         if (isMobileDevice() && window.Worker) {
@@ -5633,6 +5767,7 @@ function pokemonRaidFilter(event) { // eslint-disable-line no-unused-vars
     cont.find('.pokemon-icon-sprite').removeClass('active')
     img.addClass('active')
 }
+
 function generateRaidBossList() {
     var boss = raidBossActive
     var data = '<div class="pokemon-list raid-submission">'
@@ -5748,9 +5883,22 @@ $(function () {
     if (Store.get('playCries')) {
         fetchCriesJson()
     }
-    // load MOTD, if set
-    if (motd) {
-        $('#motd').load('static/motd/motd.html');
+    if (newMotd.enable === 'false') {
+        if (motd) {
+            $.ajax({
+                url: 'motd_data',
+                type: 'POST',
+                dataType: 'json',
+                cache: false,
+                success: function (data) {
+                    // set content of motd banner
+                    $('#motd').attr('title', data.title).html(data.content).dialog()
+                },
+                fail: function () {
+                    return false
+                }
+            })
+        }
     }
 })
 
@@ -6349,13 +6497,23 @@ $(function () {
         if (this.checked) {
             wrapper.show(options)
             if (Store.get('showExCells')) {
-                showS2Cells(13, {color: 'red', weight: 6, dashOffset: '8'})
+                showS2Cells(13, {
+                    color: 'red',
+                    weight: 6,
+                    dashOffset: '8'
+                })
             }
             if (Store.get('showGymCells')) {
-                showS2Cells(14, {color: 'green', weight: 4, dashOffset: '4'})
+                showS2Cells(14, {
+                    color: 'green',
+                    weight: 4,
+                    dashOffset: '4'
+                })
             }
             if (Store.get('showStopCells')) {
-                showS2Cells(17, {color: 'blue'})
+                showS2Cells(17, {
+                    color: 'blue'
+                })
             }
         } else {
             wrapper.hide(options)
@@ -6369,7 +6527,11 @@ $(function () {
     $('#s2-level13-switch').change(function () {
         Store.set('showExCells', this.checked)
         if (this.checked) {
-            showS2Cells(13, {color: 'red', weight: 6, dashOffset: '8'})
+            showS2Cells(13, {
+                color: 'red',
+                weight: 6,
+                dashOffset: '8'
+            })
         } else {
             exLayerGroup.clearLayers()
         }
@@ -6378,7 +6540,11 @@ $(function () {
     $('#s2-level14-switch').change(function () {
         Store.set('showGymCells', this.checked)
         if (this.checked) {
-            showS2Cells(14, {color: 'green', weight: 4, dashOffset: '4'})
+            showS2Cells(14, {
+                color: 'green',
+                weight: 4,
+                dashOffset: '4'
+            })
         } else {
             gymLayerGroup.clearLayers()
         }
@@ -6387,7 +6553,9 @@ $(function () {
     $('#s2-level17-switch').change(function () {
         Store.set('showStopCells', this.checked)
         if (this.checked) {
-            showS2Cells(17, {color: 'blue'})
+            showS2Cells(17, {
+                color: 'blue'
+            })
         } else {
             stopLayerGroup.clearLayers()
         }
@@ -6503,11 +6671,15 @@ $(function () {
         Store.set('showDustAmount', dustamount)
         if (dustamount === '0') {
             $('#dustvalue').text('Off')
-            setTimeout(function () { updateMap() }, 2000)
+            setTimeout(function () {
+                updateMap()
+            }, 2000)
         } else {
             $('#dustvalue').text(i8ln('above') + ' ' + dustamount)
             reloaddustamount = true
-            setTimeout(function () { updateMap() }, 2000)
+            setTimeout(function () {
+                updateMap()
+            }, 2000)
         }
     })
 
@@ -6611,7 +6783,9 @@ $(function () {
         'language': {
             'emptyTable': ''
         },
-        'columns': [{'orderable': false}, null, null, null]
+        'columns': [{
+            'orderable': false
+        }, null, null, null]
     }).order([1, 'asc'])
 })
 

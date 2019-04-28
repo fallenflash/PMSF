@@ -2,12 +2,15 @@
   top: 4.5em !important;
   max-height: calc(100% - 5.5em);
   overflow-y: auto;
+
   .submit-modal.ui-dialog-content {
     padding: 0;
     overflow: hidden;
+
     #submit-tabs {
       border: 0;
       padding: 0;
+
       ul.ui-tabs-nav {
         display: inline;
         padding: 0;
@@ -15,34 +18,43 @@
         border: 0;
         border-bottom: 1px solid grey;
         margin-top: 5px;
+
         li {
+          -webkit-box-flex: 1;
+          -ms-flex: 1;
           flex: 1;
           margin: 0;
           border-radius: 0;
-	  width: 25%;
+          width: 25%;
+
           &.ui-state-active {
-            border-color: #3b3b3b;
-            background-color: #3b3b3b;
+            border-color: #06557f;
+            background-color: #06557f;
           }
-          a{
-            text-align:center;
-            font-size:12px;
+
+          a {
+            text-align: center;
+            font-size: 12px;
             padding: .25em 1em;
-            width:100%;
-            @media(min-width:768px){
-              font-size:16px;
+            width: 100%;
+
+            @media(min-width: 768px) {
+              font-size: 16px;
             }
-            img{
-              height:32px;
+
+            img {
+              height: 32px;
             }
           }
         }
       }
+
       .ui-tabs-panel {
         padding: 0;
       }
     }
   }
+
   input {
     width: calc(100% - 4px);
     height: 40px;
@@ -55,6 +67,7 @@
     margin-right: 2px;
     border: 1px solid grey;
   }
+
   .pokemon-list {
     max-height: 331px;
     overflow-x: hidden;
@@ -63,8 +76,9 @@
 }
 
 #nest-search-results {
-  .i-icon{
-    position:relative;
+  .i-icon {
+    position: relative;
+
     .pokemon-icon {
       background-image: url($spriteLarge);
       background-image: var(--sprite-large);
