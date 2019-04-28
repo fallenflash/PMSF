@@ -1,17 +1,21 @@
 body {
   font-family: sans-serif;
 }
+
 h1 {
   margin: 5px 0 65px 0;
 }
+
 ol {
   margin: 0 -4px;
   padding: 0;
 }
+
 li {
   border: solid 1px #aaa;
   border-radius: 2px;
-  box-shadow: 2px 2px 2px #eee;
+  -webkit-box-shadow: 2px 2px 2px #eee;
+          box-shadow: 2px 2px 2px #eee;
   font-family: sans-serif;
   text-decoration: none;
   color: #444;
@@ -21,22 +25,30 @@ li {
   padding-left: 80px;
   margin: 5px 2px;
   height: 60px;
-  image-rendering: pixelated;
+  -ms-interpolation-mode: nearest-neighbor;
+      image-rendering: -webkit-optimize-contrast;
+      image-rendering: -moz-crisp-edges;
+      image-rendering: -o-pixelated;
+      image-rendering: pixelated;
   cursor: pointer;
-  > div {
+
+  >div {
     margin: 25px 2px 0px 2px;
     float: left;
   }
 }
+
 .origin {
   position: relative;
   top: 20px;
   padding-bottom: 10px;
 }
+
 #nav {
   position: absolute;
   top: 55px;
   left: 10px;
+
   button {
     float: left;
     padding: .7em 1em;
@@ -48,24 +60,29 @@ li {
     cursor: pointer;
     width: 140px;
   }
-  > div {
+
+  >div {
     display: inline-block;
     float: left;
     text-align: middle;
   }
+
   label {
     display: block;
     cursor: pointer;
     padding: 2px 0;
+
     input {
       margin-top: 15px;
       margin-left: 10px;
     }
   }
 }
+
 .name {
   font-weight: bold;
 }
+
 .remain {
   color: #999;
 }

@@ -1,0 +1,282 @@
+    @font-face {
+        font-family: "Whitney";
+        src: url("https://db.onlinewebfonts.com/t/6897a1fa2639214696fc1d3809948c48.eot");
+        src: url("https://db.onlinewebfonts.com/t/6897a1fa2639214696fc1d3809948c48.eot?#iefix") format("embedded-opentype"),
+            url("https://db.onlinewebfonts.com/t/6897a1fa2639214696fc1d3809948c48.woff2") format("woff2"),
+            url("https://db.onlinewebfonts.com/t/6897a1fa2639214696fc1d3809948c48.woff") format("woff"),
+            url("https://db.onlinewebfonts.com/t/6897a1fa2639214696fc1d3809948c48.ttf") format("truetype"),
+            url("https://db.onlinewebfonts.com/t/6897a1fa2639214696fc1d3809948c48.svg#Whitney") format("svg");
+    }
+
+    #motd {
+        max-width: 100vw;
+        min-height: 200px;
+        width: 780px;
+        height: 400px;
+        margin: auto;
+        left: 50%;
+        top: 50%;
+        -webkit-transform: translate3d(-50%, -50%, 0);
+        transform: translate3d(-50%, -50%, 0);
+        position: absolute;
+        z-index: 2000;
+    }
+
+    .motdNew {
+        -webkit-box-sizing: border-box;
+        box-sizing: border-box;
+        color: #444;
+    }
+
+
+    .motd-auth-center {
+        -webkit-box-align: center;
+        -ms-flex-align: center;
+        align-items: center;
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-box-pack: center;
+        -ms-flex-pack: center;
+        justify-content: center;
+        max-width: 100vw;
+        min-height: 200px;
+        width: 780px;
+        height: 400px;
+
+        font-family: 'Whitney SSm A', 'Whitney SSm B', 'Whitney', 'Arial';
+        font-weight: 400;
+        font-style: normal;
+        background-color: rgba(0, 0, 0, 0.3);
+    }
+
+    .motd-blur {
+        -webkit-filter: blur(5px) brightness(80%);
+        filter: blur(5px) brightness(80%);
+
+
+    }
+
+    .motd-size {
+        z-index: 10001;
+        max-width: 780px;
+        max-height: 400px;
+        width: 100%;
+        height: 100%;
+    }
+
+    .motd-inner {
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+        overflow: hidden;
+        max-width: 780px;
+        max-height: 400px;
+        width: 100%;
+        height: 100%;
+    }
+
+    .motd-inner-section {
+        padding: 1.25rem 2rem;
+    }
+
+    .motd-sidebar {
+        background: #0289CD88;
+        -webkit-box-flex: 40%;
+        -ms-flex: 40%;
+        flex: 40%;
+        position: relative;
+        overflow: hidden;
+        padding: 5%;
+        z-index: 10002;
+    }
+
+    .motd-logo {
+        position: absolute;
+        width: 400px;
+        height: 400px;
+        z-index: 10003;
+        top: 0;
+        left: -15px;
+    }
+
+    .motd-links {
+        background: rgba(34, 37, 42, 0.8);
+        -webkit-box-flex: 45%;
+        -ms-flex: 45%;
+        flex: 45%;
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-box-orient: vertical;
+        -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+        flex-direction: column;
+        -webkit-box-pack: center;
+        -ms-flex-pack: center;
+        justify-content: center;
+    }
+
+    .motd-title {
+        color: rgba(255, 255, 255, 0.95);
+        font-size: 1.5rem;
+        font-weight: 900;
+        letter-spacing: 1px;
+        padding: 0 0 1rem 0;
+        text-align: center;
+        text-transform: uppercase;
+    }
+
+    .motd-button {
+        background: #697ec4;
+        color: #fff;
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+        line-height: 60px;
+        margin-top: 30px;
+        margin-left: 5%;
+        outline: 0;
+        width: 90%;
+        font-size: 1.15rem;
+        -webkit-box-align: center;
+        -ms-flex-align: center;
+        align-items: center;
+        text-align: right;
+        cursor: pointer;
+        border: solid 2px transparent;
+        border-radius: 4px;
+        text-decoration: none;
+    }
+
+
+    .motd-button>i,
+    .motd-button>svg {
+        margin-right: auto;
+        margin-left: 5%;
+        width: 35px;
+        height: 35px;
+        -webkit-box-shadow: none;
+        box-shadow: none;
+        background: none;
+
+    }
+
+    .motd-button>span {
+        margin-right: 5%;
+        margin-left: auto;
+        width: 180px;
+        text-align: center;
+    }
+
+    .form__meta {
+        font-size: 0.6875 rem;
+        padding: 10 px 0;
+    }
+
+    .motd-btn-donate {
+        background-color: #448866;
+    }
+
+    .motd-button:active {
+        -webkit-transform: translateY(1 px);
+        transform: translateY(1 px);
+        -webkit-filter: saturate(150%);
+        filter: saturate(150%);
+    }
+
+    .motd-btn-login:hover {
+        color: #697ec4;
+        border-color: #697ec4;
+        background-color: white;
+    }
+
+    .motd-btn-donate:hover {
+        color: #448866;
+        border-color: #448866;
+        background-color: white;
+    }
+
+    .motdButton {
+        position: absolute;
+        right: 20px;
+        margin-top: 0;
+        top: calc(50% - 19px);
+        background-color: #00000000;
+        border: #fff 1px solid;
+        color: #ffffff;
+    }
+
+    .motdButton:hover {
+        position: absolute;
+        right: 20px;
+        margin-top: 0;
+        top: calc(50% - 19px);
+        background-color: #ffffff;
+        border: #fff 1px solid;
+        color: #21cca8;
+    }
+
+    .fa-expand {
+        color: #000;
+    }
+
+    header>a[href="./user"],
+    header>a[href="https://donorbox.org/silphscope"] {
+        display: none;
+    }
+
+    a.close-i {
+        display: block;
+        color: white;
+        margin-left: auto;
+        margin-top: -50px;
+        margin-bottom: 20px;
+    }
+
+    a.close-i:hover {
+        color: #5c5c5c;
+    }
+
+    #header * {
+        -webkit-filter: drop-shadow(rgb(0, 16, 0) 0.5px 0.5px .5px);
+        filter: drop-shadow(rgb(0, 16, 0) 0.5px 0.5px .5px);
+    }
+
+    @media screen and (max-width: 700px) {
+        .motd-sidebar {
+            display: none;
+        }
+
+        .motd-links {
+            width: 98%;
+        }
+    }
+
+    .leaflet-control *,
+    .map-toggle-button>svg,
+    .leaflet-control-zoom>a {
+        color: #0289CD;
+        fill: #0289CD;
+    }
+
+    .firebreak-background {
+        position: absolute;
+        top: -100px;
+        left: 0;
+        height: 768px;
+        width: 3860px;
+        background: url("../images/bg.png") repeat-x;
+        animation: firebreak 60s linear infinite;
+    }
+
+    @keyframes firebreak {
+        0% {
+            transform: translate3d(0, 0, 0);
+        }
+
+        100% {
+            transform: translate3d(-3860px, 0, 0);
+            /* The image width */
+        }
+    }
