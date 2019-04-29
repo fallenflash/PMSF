@@ -19,27 +19,30 @@
   visibility: hidden;
   width: 25em;
   z-index: 500;
+
   // line-height: 1em;
   h3 {
     font-size: 18px;
     font-family: 'Lato', sans-serif;
     color: darken(_palette(accent2, bg), 12);
   }
+
   p {
     margin-bottom: 20px;
     color: darken(_palette(accent2, bg), 12);
   }
-  > ul {
+
+  >ul {
     margin: 0 0 (_size(element-margin) * 0.5) 0;
 
     &.links {
       list-style: none;
       padding: 0;
 
-      > li {
+      >li {
         padding: 0;
 
-        > a:not(.button) {
+        >a:not(.button) {
           border: 0;
           border-top: solid 1px _palette(accent2, border);
           color: inherit;
@@ -49,13 +52,13 @@
           text-decoration: none;
         }
 
-        > .button {
+        >.button {
           display: block;
           margin: 0.5em 0 0 0;
         }
 
         &:first-child {
-          > a:not(.button) {
+          >a:not(.button) {
             border-top: 0 !important;
           }
         }
@@ -157,6 +160,7 @@
   .team-0-text {
     color: #A9A9A9;
   }
+
   .team-1-text {
     color: #4A8ACA;
   }
@@ -318,6 +322,7 @@
           background-color: #f85888;
           // color: _get_text_color(#f85888);
         }
+
         &.dark {
           background-color: #705848;
         }
@@ -343,7 +348,8 @@
       background-color: inherit;
       border: 0;
 
-      &:nth-child(4n+1), &:nth-child(odd) {
+      &:nth-child(4n+1),
+      &:nth-child(odd) {
         border-top: solid _size(border-width) _palette(border);
       }
 
@@ -351,7 +357,8 @@
         border-bottom: solid _size(border-width) _palette(border);
       }
 
-      &:nth-child(4n+1), &:nth-child(4n+2) {
+      &:nth-child(4n+1),
+      &:nth-child(4n+2) {
         background-color: _palette(border-bg);
       }
     }
@@ -359,6 +366,7 @@
 
   tr.details {
     display: none;
+
     &.visible {
       display: table-row;
     }
@@ -370,44 +378,50 @@
     font-weight: bold;
     font-family: 'Lato';
   }
-  .submit-raid{
+
+  .submit-raid {
     padding: 5px 20px;
     cursor: pointer;
     font-size: 22px;
-    &.open{
-      background:#FFF;
-      border-top: 1px solid rgba(0,0,0,0.2);
-      border-left: 1px solid rgba(0,0,0,0.2);
-      border-right: 1px solid rgba(0,0,0,0.2);
+
+    &.open {
+      background: #FFF;
+      border-top: 1px solid rgba(0, 0, 0, 0.2);
+      border-left: 1px solid rgba(0, 0, 0, 0.2);
+      border-right: 1px solid rgba(0, 0, 0, 0.2);
     }
   }
-  .raid-report{
-    display:none;
+
+  .raid-report {
+    display: none;
     background: white;
     padding: 15px 5px;
     margin: 0px 10px;
-    border-top: 1px solid rgba(0,0,0,0.2);
-    border-left: 1px solid rgba(0,0,0,0.2);
-    border-right: 1px solid rgba(0,0,0,0.2);
-    border-bottom: 1px solid rgba(0,0,0,0.2);
+    border-top: 1px solid rgba(0, 0, 0, 0.2);
+    border-left: 1px solid rgba(0, 0, 0, 0.2);
+    border-right: 1px solid rgba(0, 0, 0, 0.2);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.2);
     margin-top: -1px;
   }
+
   .pokemon-list {
-    .pokemon-icon-sprite{
-      width: calc( 16.65% - 2px);
+    .pokemon-icon-sprite {
+      width: calc(16.65% - 2px);
     }
   }
-  .delete-gym{
+
+  .delete-gym {
     top: 0;
     left: 0;
     border-top-left-radius: 0px;
   }
 }
 
-.gm-style .gm-style-iw{
-  overflow:visible;
+.gm-style .gm-style-iw {
+  overflow: visible;
 }
-.delete-gym{
+
+.delete-gym {
   position: absolute;
   top: 0px;
   left: 0px;
@@ -418,7 +432,8 @@
   color: rgb(255, 255, 255);
   cursor: pointer;
 }
-.toggle-ex-gym{
+
+.toggle-ex-gym {
   position: absolute;
   top: 30px;
   left: 0px;
@@ -428,18 +443,53 @@
   color: rgb(255, 255, 255);
   cursor: pointer;
 }
-@media(max-width:768px){
+
+@media(max-width:768px) {
   #gym-details {
     max-width: 85%;
-    width:100%;
+    width: 100%;
+
     .pokemon-list {
-      .pokemon-icon-sprite{
-        width: calc( 20% - 2px);
+      .pokemon-icon-sprite {
+        width: calc(20% - 2px);
       }
     }
   }
 }
+
 .gym-label {
   margin-left: 10px;
   margin-right: 10px;
+}
+
+.gym-navigate {
+  color: rgb(93, 109, 126);
+  font-size: 11px;
+  font-weight: 500;
+
+  &.gym-navigate:before {
+    content: '\f018';
+    display: inline-block;
+    font-family: FontAwesome;
+    margin: 5px 3px 0px 0px;
+    height: 16px;
+    width: 16px;
+    -webkit-font-smoothing: antialiased;
+  }
+}
+
+.gym-image {
+  width: 80px;
+  height: 80px;
+  background-size: cover;
+  border-radius: 50px;
+  margin: 6px;
+}
+
+.gym-icon-countdown {
+  background-color: #c7c7c7;
+  color: black;
+  top: 50px;
+  position: absolute;
+  font-weight: 900;
 }

@@ -209,6 +209,7 @@
         align-self: center;
         margin-top: auto;
         margin-bottom: auto;
+        margin-right: 10px;
     }
 
     .motdButton:hover {
@@ -247,6 +248,8 @@
         .motd-sidebar {
             display: none;
         }
+
+
 
         .motd-links {
             width: 98%;

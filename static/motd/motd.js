@@ -1,6 +1,7 @@
+/* eslint-disable eqeqeq */
 /* eslint-disable semi */
 $(document).ready(function () {
-    console.log([window.motd, window.newMotd, window.noDonate, window.login]);
+    console.log([window.motd, window.newMotd, window.login]);
     if (window.motd && window.newMotd.enable === 'true') {
         var ver = checkIosVersion();
         var version;
@@ -13,14 +14,17 @@ $(document).ready(function () {
         if (version >= 12.2 || version === false) {
             $('#motd').load('static/motd/motd.html', function () {
                 var buttonText;
-                $('#map').addClass('motd-blur');
-                $('#header').addClass('motd-blur');
+                var blurClasses = ['#map', '#header', '.search-container', '.fullscreen-toggle'];
+                $.each(blurClasses, function (i, v) {
+                    $(v).addClass('motd-blur');
+                });
                 if (window.login) {
                     $('header').find('a[href="./user"]').hide();
                 }
                 if (window.paypalUrl !== '') {
                     $('header').find('a[href="' + window.paypalUrl + '"]').hide();
                 }
+
                 if (window.login && window.paypalUrl !== '') {
                     buttonText = 'Login / Donate';
                 } else if (window.login && window.paypalUrl === '') {
@@ -30,11 +34,19 @@ $(document).ready(function () {
                 } else if (!window.login && window.paypalUrl !== '') {
                     buttonText = '';
                 }
+                if (window.sSUser != false) {
+                    buttonText = 'Logout';
+                    if (window.paypalUrl != '') {
+                        buttonText += ' / Donate';
+                    }
+                }
                 if (buttonText !== '') {
-                    if ($('.currentWeather').length > 0) {
-                        $('<button data-first="1" class="btn m-1 motdButton btn-primary">' + buttonText + '</button>').insertBefore('.currentWeather');
+                    if ($('#currentWeather').length > 0) {
+                        $('<button data-first="1" class="btn m-1 motdButton btn-primary">' + buttonText + '</button>').insertBefore('#currentWeather');
+                    } else if ($('#statsToggle').length > 0 && $('#currentWeather').length > 0) {
+                        $('<button data-first="1" class="btn m-1 motdButton btn-primary">' + buttonText + '</button>').insertBefore('#statsToggle');
                     } else {
-                        $('header').append('<button data-first="1" class="btn m-1 motdButton btn-primary" style="margin-left:auto;">' + buttonText + '</button>');
+                        $('header').append('<button data-first="1" class="btn m-1 motdButton btn-primary"">' + buttonText + '</button>');
                         $('header').on('click', '.motdButton', showMotd);
                     }
                 }

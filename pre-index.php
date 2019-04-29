@@ -226,26 +226,21 @@ function itemFilterImages($noItemNumbers, $onClick = '', $itemsToExclude = array
         <header id="header">
             <a href="#nav"><span class="label"><?php echo i8ln('Options') ?></span></a>
 
-            <h1><a href="#"><?= $title ?><img src="<?= $raidmapLogo ?>" height="35" width="auto" border="0" style="float: right; margin-left: 5px; margin-top: 10px;"></a></h1>
+            <h1><a href="#"><?= $title ?><img src="<?= $raidmapLogo ?>" height="35px" width="auto" border="0" style="margin-left: 5px; margin-top: auto;margin-bottom:auto;"></a></h1>
             <?php
             if ($discordUrl != "") {
-                echo '<a href="' . $discordUrl . '" target="_blank" style="margin-bottom: 5px; vertical-align: middle;padding:0 5px;">
-            <img src="static/images/discord.png" border="0" style="float: right;">
+                echo '<a href="' . $discordUrl . '" target="_blank" style="margin-bottom: auto;margin-top:auto vertical-align: middle;padding:0 5px;">
+            <img src="static/images/discord.png" border="0">
         </a>';
             }
             if ($paypalUrl != "") {
-                echo '<a href="' . $paypalUrl . '" target="_blank" style="margin-bottom: 5px; vertical-align: middle; padding:0 5px;">
+                echo '<a href="' . $paypalUrl . '" target="_blank" style="margin-bottom: auto; margin-top:auto; vertical-align: middle; padding:0 5px;">
             <img src="https://www.paypalobjects.com/webstatic/en_US/i/btn/png/btn_donate_74x21.png" border="0" name="submit"
-                 title="PayPal - The safer, easier way to pay online!" alt="Donate" style="float: right;">
+                 title="PayPal - The safer, easier way to pay online!" alt="Donate">
         </a>';
             }
             ?>
-            <?php if (!$noWeatherOverlay) {
-                ?>
-                <div id="currentWeather"></div>
-            <?php
 
-        } ?>
 
             <?php
             if ($noNativeLogin === false || $noDiscordLogin === false) {
@@ -282,9 +277,15 @@ function itemFilterImages($noItemNumbers, $onClick = '', $itemsToExclude = array
                 }
             }
             ?>
+            <?php if (!$noWeatherOverlay) {
+                ?>
+                <div id="currentWeather"></div>
+            <?php
+
+        } ?>
             <?php if (!$noStatsToggle) {
                 ?>
-                <a href="#stats" id="statsToggle" class="statsNav" style="float: right;"><span class="label"><?php echo i8ln('Stats') ?></span></a>
+                <a href="#stats" id="statsToggle" class="statsNav"><span class="label"><?php echo i8ln('Stats') ?></span></a>
             <?php
 
         } ?>
@@ -1943,7 +1944,7 @@ function itemFilterImages($noItemNumbers, $onClick = '', $itemsToExclude = array
         var weatherColors = <?php echo json_encode($weatherColors); ?>;
         var mapType = '<?php echo strtolower($map); ?>';
         var mapFork = '<?php echo strtolower($fork); ?>';
-        var triggerGyms = <?php echo $triggerGyms ?>;
+        var triggerGyms = <?php echo isset($triggerGyms) ? $triggerGyms : '' ?>;
         var noExGyms = <?php echo $noExGyms === true ? 'true' : 'false' ?>;
         var noParkInfo = <?php echo $noParkInfo === true ? 'true' : 'false' ?>;
         var onlyTriggerGyms = <?php echo $onlyTriggerGyms === true ? 'true' : 'false' ?>;

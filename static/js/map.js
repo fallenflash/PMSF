@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 //
 // Global map.js variables
 //
@@ -5883,7 +5884,7 @@ $(function () {
     if (Store.get('playCries')) {
         fetchCriesJson()
     }
-    if (newMotd.enable === 'false') {
+    if (window.newMotd.enable === 'false') {
         if (motd) {
             $.ajax({
                 url: 'motd_data',
