@@ -30,11 +30,13 @@ body {
 
   >h1 {
     color: _palette(accent2, fg-bold);
-    display: inline-block;
+    display: flex;
+    align-items: center;
     height: inherit;
     line-height: inherit;
     margin: 0;
     padding: 0;
+
 
     a {
       font-size: 1.25em;
@@ -43,7 +45,8 @@ body {
 
   >a {
     @include vendor('transition', 'color #{_duration(transition)} ease-in-out');
-    display: inline-block;
+    display: flex;
+    align-items: center;
     padding: 0 0.75em;
     color: inherit;
     text-decoration: none;
@@ -105,6 +108,8 @@ body {
 
   #currentWeather {
     height: 64px;
+    display: flex;
+    align-items: center;
   }
 }
 

@@ -229,7 +229,7 @@ function itemFilterImages($noItemNumbers, $onClick = '', $itemsToExclude = array
             <h1><a href="#"><?= $title ?><img src="<?= $raidmapLogo ?>" height="35px" width="auto" border="0" style="margin-left: 5px; margin-top: auto;margin-bottom:auto;"></a></h1>
             <?php
             if ($discordUrl != "") {
-                echo '<a href="' . $discordUrl . '" target="_blank" style="margin-bottom: auto;margin-top:auto vertical-align: middle;padding:0 5px;">
+                echo '<a href="' . $discordUrl . '" target="_blank" style="margin-bottom: auto;margin-top:auto; vertical-align: middle;padding:0 5px;">
             <img src="static/images/discord.png" border="0">
         </a>';
             }

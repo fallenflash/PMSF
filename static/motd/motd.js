@@ -46,10 +46,10 @@ $(document).ready(function () {
                     } else if ($('#statsToggle').length > 0 && $('#currentWeather').length > 0) {
                         $('<button data-first="1" class="btn m-1 motdButton btn-primary">' + buttonText + '</button>').insertBefore('#statsToggle');
                     } else {
-                        $('header').append('<button data-first="1" class="btn m-1 motdButton btn-primary"">' + buttonText + '</button>');
-                        $('header').on('click', '.motdButton', showMotd);
+                        $('header').append('<button data-first="1" class="btn m-1 motdButton btn-primary">' + buttonText + '</button>');
                     }
                 }
+                $('header').on('click', '.motdButton', showMotd);
                 $('.motdMessage').html(window.newMotd.message);
                 $('body').on('click', '.motd-blur', hideMotd);
                 // eslint-disable-next-line no-undef
@@ -57,8 +57,14 @@ $(document).ready(function () {
                     var userSpan = $('header > span')[0];
                     // eslint-disable-next-line no-undef
                     $(userSpan).html(sSUser.user);
+                    $('.motd-btn-login').text('Logout');
+                    $('.motd-btn-login').click(function (e) {
+                        e.preventDefault();
+                        window.location.href = 'logout.php';
+                    });
                     $(userSpan).css({
-                        'color': '#ffffff'
+                        'color': '#ffffff',
+                        'text-shadow': '0.5px 0.5px .5px rgb(110,255,110)'
                     });
                 } else {
                     showMotd();
@@ -89,9 +95,10 @@ function hideMotd(e) {
 }
 
 function showMotd(e) {
-    $('body').find('#map').addClass('motd-blur');
-    $('body').find('#header').addClass('motd-blur');
-
+    var blurClasses = ['#map', '#header', '.search-container', '.fullscreen-toggle'];
+    $.each(blurClasses, function (i, v) {
+        $(v).addClass('motd-blur');
+    });
     $('body').find('#motd').show();
     setTimeout(function () {
         $('body').on('click', '.motd-blur', hideMotd);
