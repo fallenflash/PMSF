@@ -115,7 +115,6 @@
         -webkit-box-pack: center;
         -ms-flex-pack: center;
         justify-content: center;
-
     }
 
     .motd-title {
@@ -126,6 +125,11 @@
         padding: 0 0 1rem 0;
         text-align: center;
         text-transform: uppercase;
+    }
+
+    .motdMessage {
+        color: #fff;
+        text-align: center;
     }
 
     .motd-button {
@@ -198,21 +202,17 @@
         background-color: white;
     }
 
-    .motdMessage: {
-        color: #fff;
-        text-align: center;
-    }
-
     .motdButton {
-        margin-right: 20px;
-        margin-top: 0;
-        top: calc(50% - 19px);
         background-color: #00000000;
         border: #fff 1px solid;
         color: #ffffff;
     }
 
     .motdButton:hover {
+        position: absolute;
+        right: 20px;
+        margin-top: 0;
+        top: calc(50% - 19px);
         background-color: #ffffff;
         border: #fff 1px solid;
         color: #21cca8;
@@ -228,9 +228,9 @@
     }
 
     a.close-i {
+        position: absolute;
         display: block;
         color: white;
-        position: absolute;
         top: 10px;
         right: 10px;
     }

@@ -31,15 +31,14 @@ $(document).ready(function () {
                     buttonText = '';
                 }
                 if (buttonText !== '') {
-                    $('header').append('<button data-first="1" class="btn m-1 motdButton btn-primary">' + buttonText + '</button>');
-                    $('header').on('click', '.motdButton', showMotd);
-                    if ($('.currentWeather').length >= 1) {
-                        $('.motdButton').css({
-                            right: '70px'
-                        });
+                    if ($('.currentWeather').length > 0) {
+                        $('<button data-first="1" class="btn m-1 motdButton btn-primary">' + buttonText + '</button>').insertBefore('.currentWeather');
+                    } else {
+                        $('header').append('<button data-first="1" class="btn m-1 motdButton btn-primary" style="margin-left:auto;">' + buttonText + '</button>');
+                        $('header').on('click', '.motdButton', showMotd);
                     }
                 }
-                $('.motdMessage').html(newMotd.message);
+                $('.motdMessage').html(window.newMotd.message);
                 $('body').on('click', '.motd-blur', hideMotd);
                 // eslint-disable-next-line no-undef
                 if (window.sSUser) {

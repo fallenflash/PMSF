@@ -24,6 +24,9 @@ body {
   -webkit-box-shadow: 0 0 4px 0 #0289CD;
   box-shadow: 0 0 4px 0 #0289CD;
   @include noSelect();
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
 
   >h1 {
     color: _palette(accent2, fg-bold);
@@ -102,7 +105,7 @@ body {
 
   #currentWeather {
     height: 64px;
-    float: right;
+    margin-left: auto;
   }
 }
 

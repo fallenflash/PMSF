@@ -4,10 +4,24 @@
 }
 
 .pokestop-image {
-  width: 100%;
+  width: 80px;
+  height: 80px;
+  background-size: cover;
+  border-radius: 50px;
+  margin: 6px;
+  border: 3px solid #36c6ff;
 }
 
 .shiny .leaflet-popup-content-wrapper {
   background: #ffffff url('/static/images/stars.svg');
   background-size: 100%;
+}
+
+.pokestop-quest-image {
+  width: 80px;
+  height: 80px;
+  background-size: cover;
+  border-radius: 50px;
+  margin: 6px;
+  border: 3px solid #d26600;
 }
