@@ -206,13 +206,12 @@
         background-color: #00000000;
         border: #fff 1px solid;
         color: #ffffff;
+        align-self: center;
+        margin-top: auto;
+        margin-bottom: auto;
     }
 
     .motdButton:hover {
-        position: absolute;
-        right: 20px;
-        margin-top: 0;
-        top: calc(50% - 19px);
         background-color: #ffffff;
         border: #fff 1px solid;
         color: #21cca8;
