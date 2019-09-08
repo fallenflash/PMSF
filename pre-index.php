@@ -2118,5 +2118,14 @@ $( document ).ready(function() {
     initMap()
 })
 </script>
+<?php
+    if (!empty($enabledPlugins)) {
+        forEach($enabledPlugins as $plugin) {
+            if (file_exists(__DIR__ . "/plugins/" . $plugin . "/init.js")) { ?>
+<script src="plugins/<?=$plugin?>/init.js"></script>
+            <?php }
+        }
+    }
+?>
 </body>
 </html>

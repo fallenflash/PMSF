@@ -49,10 +49,10 @@ $maxLatLng = 1;                                                     // Max latit
 $defaultZoom = 16;                                                  // Default zoom level for first time users.
 $maxZoomOut = 0;                                                    // Max zoom out level (11 ~= $maxLatLng = 1, 0 to disable, lower = the further you can zoom out)
 $maxZoomIn = 18;                                                    // Max zoom in level 18 
-$disableClusteringAtZoom = 15;					                    // Disable clustering above this value. 0 to disable
-$zoomToBoundsOnClick = 15;					                        // Zoomlevel on clusterClick
-$maxClusterRadius = 30;						                        // The maximum radius that a cluster will cover from the central marker (in pixels).
-$spiderfyOnMaxZoom = 'true';				                   	    // Spiderfy cluster markers on click
+$disableClusteringAtZoom = 15;                                        // Disable clustering above this value. 0 to disable
+$zoomToBoundsOnClick = 15;                                            // Zoomlevel on clusterClick
+$maxClusterRadius = 30;                                                // The maximum radius that a cluster will cover from the central marker (in pixels).
+$spiderfyOnMaxZoom = 'true';                                           // Spiderfy cluster markers on click
 
 /* Boundaries */
 $noBoundaries = true;                                               // Enable/Disable boundaries to pull data from. Requires $boundaries to be set.
@@ -94,6 +94,9 @@ $piwikSiteId = "";
 /* Cookie Disclamer */
 $noCookie = true;                                                   // Display a Cookie Disclamer
 
+/* User Plugins */
+$enabledPlugins = []; // names of plugins in /plugin folder you wish to enable
+
 /* PayPal */
 
 $paypalUrl = "";                                                    // PayPal donation URL, leave "" for empty
@@ -128,11 +131,11 @@ $noNativeLogin = true;                                              // true/fals
 $domainName = '';                                                   // If this is empty, reset-password emails will use the domain name taken from the URL.
 
 $noDiscordLogin = true;                                             // true/false - This will enable login through discord.
-                                                                    // 1. Create a discord bot here -> https://discordapp.com/developers/applications/me
-                                                                    // 2. Install composer with "apt-get install composer".
-                                                                    // 3. Navigate to your website's root folder and type "composer install" to install the dependencies.
-                                                                    // 4. Add your callback-page as a REDIRECT URI to your discord bot. Should be the same as $discordBotRedirectUri.
-                                                                    // 5. Enter Client ID, Client Secret and Redirect URI below.
+// 1. Create a discord bot here -> https://discordapp.com/developers/applications/me
+// 2. Install composer with "apt-get install composer".
+// 3. Navigate to your website's root folder and type "composer install" to install the dependencies.
+// 4. Add your callback-page as a REDIRECT URI to your discord bot. Should be the same as $discordBotRedirectUri.
+// 5. Enter Client ID, Client Secret and Redirect URI below.
 $discordBotClientId = 0;
 $discordBotClientSecret = "";
 $discordBotRedirectUri = "https://example.com/discord-callback.php";
@@ -142,7 +145,7 @@ $logfile = '../members.log';                                        // Path to l
 $daysMembershipPerQuantity = 31;                                    // How many days membership one selly quantity will give.
 $sellyPage = '';                                                    // Link to selly purchase page for membership renewal.
 $sellyWebhookSecret = '';                                           // Add a secret key at https://selly.gg/settings to make sure the payment webhook is sent from selly to prevent fake payments.
-                                                                    // Add the same key to the $sellyWebhookSecret variable.
+// Add the same key to the $sellyWebhookSecret variable.
 /* Blacklist Settings - Only available with Discord login */
 $userBlacklist = [''];                                                                // Array of user ID's that are always blocked from accessing the map
 $userWhitelist = [''];                                              // Array of user ID's that's allowed to bypass the server blacklist
@@ -248,7 +251,7 @@ $enableRanges = 'false';                                            // true/fals
 
 $noScanPolygon = true;
 $enableScanPolygon = 'false';
-$geoJSONfile = 'custom/scannerarea.json';			    // path to geoJSON file create your own on http://geojson.io/ adjust filename
+$geoJSONfile = 'custom/scannerarea.json';                // path to geoJSON file create your own on http://geojson.io/ adjust filename
 /* Location & Search Settings */
 
 $noSearchLocation = false;                                          // true/false
@@ -283,7 +286,7 @@ $copyrightSafe = true;
 $noCostumeIcons = true;                                            // Set to true if you $iconRepository doesnt support costume icons. true/false
 $iconRepository = 'https://raw.githubusercontent.com/whitewillem/PogoAssets/resized/icons_large/';
 $noMultipleRepos = true;
-$iconRepos = [["Standard","$iconRepository"]];
+$iconRepos = [["Standard", "$iconRepository"]];
 
 $noMapStyle = false;                                                // true/false
 $mapStyle = 'openstreetmap';                                        // openstreetmap, darkmatter, styleblackandwhite, styletopo, stylesatellite, stylewikipedia
@@ -360,7 +363,7 @@ $webhookUrl = null;                                             //['url-1','url-
 //---------------------------------------------------
 $sendQuestWebhook = false;                                          // Experimental use only
 $questWebhookUrl = null;                                            // Experimental use only
-$webhookSystem = [''];						    // Supported are either 'pokealarm' or 'poracle'
+$webhookSystem = [''];                            // Supported are either 'pokealarm' or 'poracle'
 
 $manualFiveStar = [
     'webhook' => false,
@@ -383,7 +386,7 @@ $noSearchNests = true;
 $noSearchPortals = true;
 $defaultUnit = "km";                                            // mi/km
 $maxSearchResults = 10;
-$maxSearchNameLength = 0;	// 0 = Unlimited. Shorten pokestop names in reward search results if longer than this value to prevent UI layout issues
+$maxSearchNameLength = 0;    // 0 = Unlimited. Shorten pokestop names in reward search results if longer than this value to prevent UI layout issues
 //-----------------------------------------------
 // Community
 //-----------------------------------------------------
@@ -399,14 +402,14 @@ $noNests = true;                                                   // true/false
 $enableNests = 'false';                                             // true/false
 $noManualNests = true;
 $noDeleteNests = true;
-$deleteNestsOlderThan = 42;					    // days after not updated nests are removed from database by nest cron
+$deleteNestsOlderThan = 42;                        // days after not updated nests are removed from database by nest cron
 $migrationDay = strtotime('5 April 2018');                          // Adjust day value after non consitent 14 day migration
 $noAddNewNests = false;
-$excludeNestMons = [2,3,5,6,8,9,11,12,14,15,17,18,20,22,24,26,28,29,30,31,32,33,34,36,38,40,42,44,45,49,51,53,55,57,59,61,62,64,65,67,68,70,71,73,75,76,78,80,82,83,85,87,88,89,91,93,94,97,99,101,103,105,106,107,108,109,110,112,113,114,115,117,119,121,122,128,130,131,132,134,135,136,137,139,142,143,144,145,146,147,148,149,150,151,153,154,156,157,159,160,161,162,163,164,165,166,167,168,169,171,172,173,174,175,176,177,178,179,180,181,182,183,184,186,187,188,189,191,192,194,195,196,197,199,201,204,205,207,208,210,212,214,217,218,219,221,222,223,224,225,228,229,230,232,233,235,236,237,238,239,240,241,242,243,244,245,246,247,248,249,250,251,253,254,256,257,259,260,262,263,264,265,266,267,268,269,270,271,272,274,275,276,277,279,280,281,282,284,286,287,288,289,290,291,292,293,294,295,297,298,301,303,304,305,306,308,310,313,314,316,317,319,321,323,324,326,327,328,329,330,331,332,334,335,336,337,338,339,340,342,344,346,348,349,350,351,352,354,356,357,358,359,360,361,362,363,364,365,366,367,368,369,371,372,373,374,375,376,377,378,379,380,381,382,383,384,385,386];
+$excludeNestMons = [2, 3, 5, 6, 8, 9, 11, 12, 14, 15, 17, 18, 20, 22, 24, 26, 28, 29, 30, 31, 32, 33, 34, 36, 38, 40, 42, 44, 45, 49, 51, 53, 55, 57, 59, 61, 62, 64, 65, 67, 68, 70, 71, 73, 75, 76, 78, 80, 82, 83, 85, 87, 88, 89, 91, 93, 94, 97, 99, 101, 103, 105, 106, 107, 108, 109, 110, 112, 113, 114, 115, 117, 119, 121, 122, 128, 130, 131, 132, 134, 135, 136, 137, 139, 142, 143, 144, 145, 146, 147, 148, 149, 150, 151, 153, 154, 156, 157, 159, 160, 161, 162, 163, 164, 165, 166, 167, 168, 169, 171, 172, 173, 174, 175, 176, 177, 178, 179, 180, 181, 182, 183, 184, 186, 187, 188, 189, 191, 192, 194, 195, 196, 197, 199, 201, 204, 205, 207, 208, 210, 212, 214, 217, 218, 219, 221, 222, 223, 224, 225, 228, 229, 230, 232, 233, 235, 236, 237, 238, 239, 240, 241, 242, 243, 244, 245, 246, 247, 248, 249, 250, 251, 253, 254, 256, 257, 259, 260, 262, 263, 264, 265, 266, 267, 268, 269, 270, 271, 272, 274, 275, 276, 277, 279, 280, 281, 282, 284, 286, 287, 288, 289, 290, 291, 292, 293, 294, 295, 297, 298, 301, 303, 304, 305, 306, 308, 310, 313, 314, 316, 317, 319, 321, 323, 324, 326, 327, 328, 329, 330, 331, 332, 334, 335, 336, 337, 338, 339, 340, 342, 344, 346, 348, 349, 350, 351, 352, 354, 356, 357, 358, 359, 360, 361, 362, 363, 364, 365, 366, 367, 368, 369, 371, 372, 373, 374, 375, 376, 377, 378, 379, 380, 381, 382, 383, 384, 385, 386];
 
 $noNestPolygon = true;
 $enableNestPolygon = 'false';
-$nestGeoJSONfile = 'custom/nest.json';			    // path to geoJSON file provided by https://github.com/M4d40/PMSFnestScript
+$nestGeoJSONfile = 'custom/nest.json';                // path to geoJSON file provided by https://github.com/M4d40/PMSFnestScript
 //-----------------------------------------------
 // HPWU
 //-----------------------------------------------------

@@ -1,0 +1,238 @@
+<style>
+    /*canvas*/
+    #silphCanvas {
+        background-color: rgba(51, 170, 51, 0.2);
+        -webkit-transform: scaleY(-1);
+        transform: scaleY(-1);
+        opacity: .4;
+        mix-blend-mode: hard-light;
+        width: 100%;
+        height: 100%;
+
+    }
+
+    .img2 {
+        display: none;
+    }
+
+    @media only screen and (max-width: 720px) {
+        .img2 {
+            display: block;
+            width: 65%;
+            height: 65%;
+            margin: 17.5%;
+        }
+
+        .img1 {
+            display: none;
+        }
+    }
+
+</style>
+<canvas id="silphCanvas"></canvas>
+<img class="logo-img img1" src="./plugins/motd/images/logo-image.svg" />
+<img class="logo-img img2" src="./plugins/motd/images/logo-image2.svg" />
+<script>
+    var c = $("#silphCanvas")[0];
+    var ctx = c.getContext("2d");
+    var green = "120,255,120";
+    var ww, wh;
+    var center = {
+        x: 0,
+        y: 0
+    };
+
+    function getWindowSize() {
+        ww = $('.img-container').outerWidth();
+        wh = $('.img-container').outerHeight();
+        c.width = ww;
+        c.height = wh;
+        center = {
+            x: ww / 2,
+            y: wh / 2
+        };
+        ctx.restore();
+        ctx.translate(center.x, center.y);
+    }
+    // make sure of center whenever resize
+    getWindowSize();
+    $(window).resize(getWindowSize);
+    // radar blips
+    var enemies = Array(10).fill({}).map(
+        function(obj) {
+            return {
+                r: Math.random() * 200,
+                deg: Math.random() * 360,
+                opacity: 0
+            }
+        }
+    );
+    setInterval(draw, 10);
+    var time = 0;
+    var deg_to_pi = Math.PI / 180;
+
+    function Point(r, deg) {
+        return {
+            x: r * Math.cos(deg_to_pi * deg),
+            y: r * Math.sin(deg_to_pi * deg),
+        };
+    }
+
+    function Color(op) {
+        return "rgba(" + green + "," + op + ")";
+    }
+
+    function draw() {
+        time += 1;
+
+        ctx.fillStyle = "#222";
+        ctx.beginPath();
+        ctx.rect(-1000, -1000, 2000, 2000);
+        ctx.fill();
+
+        ctx.strokeStyle = "rgba(255,255,255,0.1)";
+        ctx.moveTo(-ww / 2, 0);
+        ctx.lineTo(ww / 2, 0);
+        ctx.moveTo(0, -wh / 2);
+        ctx.lineTo(0, wh / 2);
+        ctx.stroke();
+
+        ctx.strokeStyle = Color(1);
+        var r = ww / 1.8;
+        var deg = time;
+        var newpoint = Point(r, deg);
+        var line_deg = (time / 2) % 360;
+        // console.log(line_deg);
+
+        var line_deg_len = 100;
+
+        for (var i = 0; i < line_deg_len; i++) {
+            // var deg = (time-i);
+            var deg1 = (line_deg - i - 1);
+            var deg2 = (line_deg - i);
+
+            var point1 = Point(r, deg1);
+            var point2 = Point(r, deg2);
+            var opacity = 1 - (i / line_deg_len) - 0.3;
+            if (i == 0) opacity = 1;
+            ctx.beginPath();
+            // ctx.fillStyle="white";
+            ctx.fillStyle = Color(opacity);
+            ctx.moveTo(0, 0);
+            ctx.lineTo(point1.x, point1.y);
+            ctx.lineTo(point2.x, point2.y);
+            // ctx.stroke();
+            ctx.fill();
+        }
+
+        enemies.forEach(function(obj) {
+            ctx.fillStyle = Color(obj.opacity);
+            var obj_point = Point(obj.r, obj.deg);
+
+            ctx.beginPath();
+            ctx.arc(
+                obj_point.x, obj_point.y,
+                4, 0, 2 * Math.PI
+            );
+            ctx.fill();
+
+            ctx.strokeStyle = Color(obj.opacity);
+            var x_size = 6;
+            ctx.lineWidth = 4;
+            ctx.beginPath();
+            ctx.moveTo(obj_point.x - x_size, obj_point.y + x_size);
+            ctx.lineTo(obj_point.x + x_size, obj_point.y - x_size);
+            ctx.moveTo(obj_point.x + x_size, obj_point.y + x_size);
+            ctx.lineTo(obj_point.x - x_size, obj_point.y - x_size);
+            ctx.stroke();
+
+            if (Math.abs(obj.deg - line_deg) <= 1) {
+                obj.opacity = 1;
+                $(".message").text("Detected: " + obj.r.toFixed(3) + " at " + obj.deg.toFixed(3));
+            }
+            obj.opacity *= 0.99;
+
+            ctx.strokeStyle = Color(obj.opacity);
+            ctx.lineWidth = 1;
+            ctx.beginPath();
+            ctx.arc(
+                obj_point.x, obj_point.y,
+                10 * (1 / (obj.opacity + 0.0001)), 0, 2 * Math.PI
+            );
+            ctx.stroke();
+
+        });
+
+        ctx.strokeStyle = Color(1);
+        var split = 120;
+        var feature = 15;
+        var start_r = ww / 3;
+        var len = 5;
+
+        for (var i = 0; i < split; i++) {
+            ctx.beginPath();
+            var deg = (i / 120) * 360;
+
+            if (i % feature == 0) {
+                len = 15;
+                ctx.lineWidth = 3;
+            } else {
+                len = 7;
+                ctx.lineWidth = 1;
+            }
+
+            var point1 = Point(start_r, deg);
+            var point2 = Point(start_r + len, deg);
+
+            ctx.moveTo(point1.x, point1.y);
+            ctx.lineTo(point2.x, point2.y);
+
+            ctx.stroke();
+
+        }
+
+        function CondCircle(r, lineWidth, func_cond) {
+
+            ctx.lineWidth = lineWidth;
+            ctx.strokeStyle = Color(1);
+
+            ctx.beginPath();
+            for (var i = 0; i <= 360; i++) {
+                var point = Point(r, i);
+                if (func_cond(i)) {
+                    ctx.lineTo(point.x, point.y);
+                } else {
+                    ctx.moveTo(point.x, point.y);
+                }
+            }
+            ctx.stroke();
+
+        }
+
+        function newLine(start, end, c = .2, w = 2) {
+            ctx.strokeStyle = Color(c);
+            ctx.lineWidth = w;
+            ctx.moveTo(start[0], start[1]);
+            ctx.lineTo(end[0], end[1]);
+            ctx.stroke();
+        }
+        newLine([-center.x, 0], [center.x, 0]);
+        newLine([0, -center.y], [0, center.y]);
+        // CondCircle(300);
+
+        CondCircle(ww / 1.8, 2, function(deg) {
+            return ((deg + time / 5) % 180) < 90;
+        });
+        CondCircle(ww / 4, 1, function(deg) {
+            return (deg % 3) < 1;
+        });
+        CondCircle(ww / 3, 1, function(deg) {
+            return true;
+        });
+        CondCircle(ww / 8, 1, function(deg) {
+            return true;
+        });
+
+    }
+
+</script>

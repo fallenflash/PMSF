@@ -242,7 +242,7 @@ L.Marker.addInitHook(function () {
 //
 if (location.search.indexOf('login=true') > 0) {
     $('#nav').load(window.location.href + '#nav')
-    window.location.href = '/'
+    window.location.href = './'
 }
 if (location.search.indexOf('login=false') > 0) {
     openAccessDeniedModal()

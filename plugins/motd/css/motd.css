@@ -1,0 +1,222 @@
+#motdNew {
+    font-family: 'Open Sans', sans-serif;
+    font-variant: small-caps;
+    font-weight: 800;
+    font-style: normal;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    max-height: 440px;
+    max-width: 780px;
+    height: 400px;
+    width: 100%;
+}
+
+
+.motd-blur {
+    -webkit-filter: blur(2px);
+    filter: blur(2px);
+}
+
+.motd-size {
+    max-height: 440px;
+    max-width: 780px;
+    height: 400px;
+    width: 100%;
+}
+
+.motd-inner {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    overflow: hidden;
+}
+
+.motd-inner-section {
+    padding: 0;
+}
+
+.motd-sidebar {
+    background: rgba(0, 51, 0, .3);
+    -webkit-box-flex: 40%;
+    -ms-flex: 40%;
+    flex: 40%;
+    position: relative;
+    overflow: hidden;
+}
+
+.motd-form {
+    background: rgba(34, 37, 42, 0.8);
+    -webkit-box-flex: 45%;
+    -ms-flex: 45%;
+    flex: 45%;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+}
+
+.motd-title {
+    color: rgba(255, 255, 255, 0.95);
+    font-size: 1.5rem;
+    font-weight: 900;
+    letter-spacing: 1px;
+    padding: 0 0 1rem 0;
+    text-align: center;
+    text-transform: uppercase;
+}
+
+.motd-message {
+    color: rgba(255, 255, 255, 0.95);
+    font-size: 1rem;
+    font-weight: 700;
+    letter-spacing: 1px;
+    padding: 0 0 1rem 0;
+    text-align: center;
+    text-transform: uppercase;
+}
+
+.close-i {
+    position: absolute;
+    top: 5%;
+    right: 3%;
+}
+
+.motd-open-btn {
+    background: #555555;
+    color: #fff;
+    margin-top: .5em;
+    float: right;
+    outline: 0;
+    cursor: pointer;
+    border: solid 2px transparent;
+    border-radius: 4px;
+    text-decoration: none;
+}
+
+.motd-btn {
+    background: #697ec4;
+    color: #fff;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    line-height: 60px;
+    margin-top: 30px;
+    margin-left: 5%;
+    outline: 0;
+    width: 90%;
+    font-size: 1.25rem;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    cursor: pointer;
+    border: solid 2px transparent;
+    border-radius: 4px;
+    text-decoration: none;
+
+}
+
+
+
+.motd-btn .fas {
+    font-weight: 900;
+}
+
+.motd-btn:active {
+    -webkit-transform: translateY(1px);
+    transform: translateY(1px);
+    -webkit-filter: saturate(150%);
+    filter: saturate(150%);
+}
+
+.btn1:hover {
+    color: #697ec4;
+    border-color: #697ec4;
+    background-color: white;
+}
+
+.btn2:hover {
+    color: #448866;
+    border-color: #448866;
+    background-color: white;
+}
+
+.motd-btn i {
+    margin: 10px 0 10px 20px;
+    font-weight: 400;
+}
+
+.motd-btn span {
+    width: calc(100% - 20px);
+    text-align: right;
+    margin-right: 30px;
+    font-weight: 900;
+    font-variant: small-caps;
+    font-size: 1.5rem;
+}
+
+.form-meta {
+    font-size: 0.6875rem;
+    padding: 10px 0;
+}
+
+.btn2 {
+    background-color: #448866;
+    font-weight: 600;
+}
+
+.img-container {
+    position: absolute;
+    overflow: hidden;
+    width: 371px;
+    height: 400px;
+    top: 0;
+    left: 0;
+}
+
+.logo-img {
+    z-index: 200;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 371px;
+    height: 400px;
+    mix-blend-mode: screen;
+    -webkit-filter: drop-shadow(2px 2px 1px black) drop-shadow(-2px 2px 1px black) drop-shadow(2px -2px 1px black) drop-shadow(-2px -2px 1px black);
+    filter: drop-shadow(2px 2px 1px black) drop-shadow(-2px 2px 1px black) drop-shadow(2px -2px 1px black) drop-shadow(-2px -2px 1px black);
+    opacity: .7;
+}
+
+@media only screen and (max-width: 720px) {
+    #motdNew {
+        max-width: 370px;
+    }
+
+    .motd-size {
+        max-width: 370px;
+    }
+
+    .motd-form {
+        -webkit-box-flex: 100%;
+        -ms-flex: 100%;
+        flex: 100%;
+        z-index: 2000;
+    }
+
+    .motd-sidebar {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        opacity: .8;
+        filter: brightness(2) contrast(2);
+    }
+}

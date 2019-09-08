@@ -50,3 +50,5 @@ static/.DS_Store
 vendor/*
 composer.lock
 custom/*
+
+\.vscode/
